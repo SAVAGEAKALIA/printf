@@ -9,6 +9,7 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 void _puts(char *);
 void print_integer(va_list);
+void print_unsigned_integer(va_list args);
 void print_character(va_list);
 void print_string(va_list);
 void print_percent(va_list);

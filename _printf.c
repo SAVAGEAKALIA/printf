@@ -15,7 +15,8 @@ int _printf(const char *format, ...)
 	ch specifier[] = {
 		{'d', print_integer},
 		{'c', print_character},
-		{'%', print_string},
+		{'%', print_percent},
+		{'s', print_string},
 		{0, NULL}
 	};
 

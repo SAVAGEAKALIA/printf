@@ -15,7 +15,7 @@ int _printf(const char *format, ...)
 	ch specifier[] = {
 		{'d', print_integer},
 		{'c', print_character},
-		{'s', print_string},
+		{'%', print_string},
 		{0, NULL}
 	};
 
@@ -32,20 +32,12 @@ int _printf(const char *format, ...)
         else
         {
             i++;
-            
-			if (format[i] == '%')
-			{
-				putchar('%');
-				count++;
-			}
-
-			else
-			{
             while (specifier[index].letter != 0)
             {
                 if (format[i] == specifier[index].letter)
                 {
                     specifier[index].function(args);
+					count++;
                     break;
                 }
                 index++;
@@ -60,7 +52,6 @@ int _printf(const char *format, ...)
 
 			}
         }
-    }
 
     va_end(args);
 

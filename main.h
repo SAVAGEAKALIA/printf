@@ -13,6 +13,7 @@ void print_unsigned_integer(va_list args);
 void print_character(va_list);
 void print_string(va_list);
 void print_percent(va_list);
+void print_r(va_list args);
 
 /**
   *struct characters - structure to print characters

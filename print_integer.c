@@ -6,14 +6,33 @@
   *
   */
 
-void print_integer(va_list)
+void print_integer(va_list args)
 {
 	int d = va_arg(args, int);
 
-	if (d < 0)
-	{
-		d = -d
-			putchar('-')
-	}
-	puts (convert(i, 10));
+	 char buffer[20];
+    int index = 0;
+    
+    if (d == 0)
+    {
+        putchar('0');
+        return;
+    }
+    
+    if (d < 0)
+    {
+        putchar('-');
+        d = -d;
+    }
+    
+    while (d > 0)
+    {
+        buffer[index++] = '0' + (d % 10);
+        d /= 10;
+    }
+    
+    while (index > 0)
+    {
+        putchar(buffer[--index]);
+    }
 }

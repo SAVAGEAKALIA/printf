@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stddef.h>
 int _printf(const char *format, ...);
 int _putchar(char c);
 void _puts(char *);
@@ -21,8 +21,9 @@ void print_string(va_list);
   *
   */
 
-type struct characters {
+typedef struct {
 	char letter;
-	(*function)(va_list);
-}ch;
+	void (*function)(va_list);
+} ch;
+
 #endif

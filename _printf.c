@@ -9,41 +9,60 @@
 
 int _printf(const char *format, ...)
 {
-	va_list args;
-	va_start (args, *format);
-	char *count;
-	int i;
 
+	int i, count = 0;
+	int index = 0;
 	ch specifier[] = {
 		{'d', print_integer},
 		{'c', print_character},
 		{'s', print_string},
 		{0, NULL}
-	}
+	};
 
-	for (count = format; *count != '\0'; count++)
+	va_list args;
+	va_start (args, *format);
+
+	for (i = 0; format[i] != '\0'; i++)
     {
-        if (*count != '%')
-            putchar(*count);
+        if (format[i] != '%')
+		{
+			putchar(format[i]);
+			count++;
+		}
         else
         {
-            count++;
+            i++;
             
-            i = 0;
-            while (specifiers[i].letter != 0)
+			if (format[i] == '%')
+			{
+				putchar('%');
+				count++;
+			}
+
+			else
+			{
+            while (specifier[index].letter != 0)
             {
-                if (*count == specifiers[i].letter)
+                if (format[i] == specifier[index].letter)
                 {
-                    specifiers[i].function(args);
+                    specifier[index].function(args);
                     break;
                 }
-                i++;
+                index++;
             }
 
-            if (specifiers[i].letter == 0)
-                putchar('%');
+            if (specifier[index].letter == 0)
+				{
+				putchar('%');
+				putchar(format[i]);
+				count += 2;
+				}
+
+			}
         }
     }
 
     va_end(args);
+
+	return (count);
 }

@@ -9,6 +9,7 @@ int _printf(const char *format, ...)
 	int index = 0;
 	ch specifier[] = {
 		{'d', print_integer},
+		{'i', print_unsigned_integer},
 		{'c', print_character},
 		{'%', print_percent},
 		{'s', print_string},

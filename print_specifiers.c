@@ -38,16 +38,17 @@ void print_integer(va_list args)
 
 	char buffer[20];
 	int index = 0;
+	char temp;
 
 	if (d == 0)
 	{
-		putchar('0');
+		write(1, "0", 1);
 		return;
 	}
 
 	if (d < 0)
 	{
-		putchar('-');
+		write(1, "-", 1);
 		d = -d;
 	}
 
@@ -59,7 +60,8 @@ void print_integer(va_list args)
 
 	while (index > 0)
 	{
-		putchar(buffer[--index]);
+		temp = buffer[--index];
+		write(1, &temp, 1);
 	}
 }
 

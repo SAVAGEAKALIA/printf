@@ -22,9 +22,9 @@ int _printf(const char *format, ...)
 			count++;
 		}
 		else /* if format is a % sign*/
-		{i++; /*skips % sign to the next character*/
-			if (format[i] == '\0')/*checks if format[i] is null*/
-				break;
+		{
+			i++; /*skips % sign to the next character*/
+
 			index = 0;
 			while (specifier[index].letter != 0)
 			{
@@ -40,7 +40,9 @@ int _printf(const char *format, ...)
 				write(1, "%", 1);
 				write(1, &format[i], 1);
 				count += 2;
-			}}}
+			}
+		}
+	}
 	va_end(args);
 	return (count);
 }

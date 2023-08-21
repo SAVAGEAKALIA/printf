@@ -8,6 +8,11 @@ static const specifier_info specifier[] = {
 	{'%', print_percent},
 	{'d', print_integer},
 	{'i', print_integeri},
+	{'u', print_unsigned_integer},
+	{'o', print_octal},
+	{'x', print_hex_lower},
+	{'X', print_hex_upper},
+	{'p', print_pointer},
 	{0, NULL}
 };
 

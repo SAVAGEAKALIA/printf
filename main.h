@@ -5,7 +5,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <unistd.h>
 /**
  *struct specifier_info - structure to print format string to specifiers
  *@letter: represent format specifier

@@ -10,7 +10,7 @@ void print_character(va_list args)
 	char c;
 
 	c = va_arg(args, int);
-	putchar(c);
+	write(1, &c, 1);
 }
 
 /**
@@ -20,7 +20,9 @@ void print_character(va_list args)
 
 void print_percent(va_list args)
 {
-	putchar('%');
+	char percent = '%';
+
+	write(1, &percent, 1);
 	(void)args;
 }
 
@@ -104,7 +106,7 @@ void print_string(va_list args)
 
 	while (*s != '\0')
 	{
-		putchar(*s);
+		write(1, s, 1);
 		s++;
 	}
 }

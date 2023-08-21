@@ -21,7 +21,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			putchar(format[i]);
+			write(1, &format[i], 1);
 			count++;
 		}
 		else /* if format is a % sign*/

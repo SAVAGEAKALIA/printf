@@ -7,6 +7,7 @@ static const specifier_info specifier[] = {
 	{'s', print_string},
 	{'%', print_percent},
 	{'d', print_integer},
+	{'i', print_integeri},
 	{0, NULL}
 };
 

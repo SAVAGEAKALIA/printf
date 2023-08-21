@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			write(1, &format[i], 1);
+			putchar(format[i]);
 			count++;
 		}
 		else /* if format is a % sign*/
@@ -37,8 +37,8 @@ int _printf(const char *format, ...)
 			}
 			if (specifier[index].letter == 0)
 			{
-				write(1, "%", 1);
-				write(1, &format[i], 1);
+				putchar('%');
+				putchar(format[i]);
 				count += 2;
 			}
 		}

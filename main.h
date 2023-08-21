@@ -25,6 +25,6 @@ void print_integer(va_list args);
 void print_character(va_list args);
 void print_string(va_list args);
 void print_percent(va_list args);
-void print_unsigned_integer(va_list args);
+void print_integeri(va_list args);
 const specifier_info *get_specifier_array(void);
 #endif

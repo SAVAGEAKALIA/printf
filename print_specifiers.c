@@ -10,7 +10,7 @@ void print_character(va_list args)
 	char c;
 
 	c = va_arg(args, int);
-	write(1, &c, 1);
+	putchar(c);
 }
 
 /**
@@ -20,9 +20,7 @@ void print_character(va_list args)
 
 void print_percent(va_list args)
 {
-	char percent = '%';
-
-	write(1, &percent, 1);
+	putchar('%');
 	(void)args;
 }
 
@@ -38,17 +36,16 @@ void print_integer(va_list args)
 
 	char buffer[20];
 	int index = 0;
-	char temp;
 
 	if (d == 0)
 	{
-		write(1, "0", 1);
+		putchar('0');
 		return;
 	}
 
 	if (d < 0)
 	{
-		write(1, "-", 1);
+		putchar('-');
 		d = -d;
 	}
 
@@ -60,8 +57,7 @@ void print_integer(va_list args)
 
 	while (index > 0)
 	{
-		temp = buffer[--index];
-		write(1, &temp, 1);
+		putchar(buffer[--index]);
 	}
 }
 
@@ -70,22 +66,29 @@ void print_integer(va_list args)
  * @args: va_list containing the unsigned integer to print
  */
 
-void print_unsigned_integer(va_list args)
+void print_integeri(va_list args)
 {
-	unsigned int u = va_arg(args, unsigned int);
+	int i = va_arg(args, int);
+	
 	char buffer[20];
 	int index = 0;
 
-	if (u == 0)
+	if (i == 0)
 	{
 		putchar('0');
 		return;
 	}
 
-	while (u > 0)
+	if (i < 0)
 	{
-		buffer[index++] = '0' + (u % 10);
-		u /= 10;
+		putchar('-');
+		i = -i;
+	}
+	
+	while (i > 0)
+	{
+		buffer[index++] = '0' + (i % 10);
+		i /= 10;
 	}
 
 	while (index > 0)
@@ -103,12 +106,11 @@ void print_unsigned_integer(va_list args)
 void print_string(va_list args)
 {
 	char *s;
-
 	s = va_arg(args, char *);
 
 	while (*s != '\0')
 	{
-		write(1, s, 1);
+		putchar(*s);
 		s++;
 	}
 }

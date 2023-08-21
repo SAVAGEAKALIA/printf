@@ -6,10 +6,7 @@
  */
 int _printf(const char *format, ...)
 {	int i, count = 0, index = 0;
-	/*
-	 *Betty error - more than 40 lines of code.Created file named
-	 * specifier.c with function
-	 */
+	/*Betty error - more than 40 lines of code.Created file with funct*/
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
 
@@ -28,7 +25,7 @@ int _printf(const char *format, ...)
 		{i++; /*skips % sign to the next character*/
 			if (format[i] == '\0')/*checks if format[i] is null*/
 				break;
-
+			index = 0;
 			while (specifier[index].letter != 0)
 			{
 				if (format[i] == specifier[index].letter)
@@ -39,8 +36,9 @@ int _printf(const char *format, ...)
 				}	index++;
 			}
 			if (specifier[index].letter == 0)
-			{	putchar('%');
-				putchar(format[i]);
+			{
+				write(1, "%", 1);
+				write(1, &format[i], 1);
 				count += 2;
 			}}}
 	va_end(args);

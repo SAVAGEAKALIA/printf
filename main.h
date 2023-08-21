@@ -16,7 +16,7 @@
 typedef struct specifier_info
 {
 	char letter;
-	void (*function)(va_list);
+	void (*function)(va_list args);
 } specifier_info;
 
 /* Function prototypes*/

@@ -108,10 +108,13 @@ void print_string(va_list args)
 	char *s;
 
 	s = va_arg(args, char *);
-
-	while (*s != '\0')
+	
+	if (*s != '\0')
 	{
+		while (*s)
+		{
 		putchar(*s);
 		s++;
+		}
 	}
 }

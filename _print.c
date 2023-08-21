@@ -24,7 +24,10 @@ int _printf(const char *format, ...)
 	{
 			format++;
 		if (*format == '\0')
-			break;
+		{
+			va_end(args);
+			return (-1);
+		}
 
 		if (*format == 'c')
 			{

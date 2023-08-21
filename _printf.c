@@ -5,7 +5,7 @@
  *Return: integer on success
  */
 int _printf(const char *format, ...)
-{	int count = 0, index;
+{	int count = 0, index = 0;
 	/*Betty error - more than 40 lines of code.Created file with funct*/
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
@@ -24,11 +24,9 @@ int _printf(const char *format, ...)
 		else /* if format is a % sign*/
 		{
 			format++; /*skips % sign to the next character*/
-			
 			if (*format == '\0')
 				break;
 
-			index = 0;
 			while (specifier[index].letter != 0)
 			{
 				if (*format == specifier[index].letter)
@@ -39,12 +37,10 @@ int _printf(const char *format, ...)
 				}	index++;
 			}
 			if (specifier[index].letter == 0)
-			{
-				putchar('%');
+			{	putchar('%');
 				putchar(*format);
 				count += 2;
-			}
-		}
+			}}
 		format++;
 	}
 	va_end(args);

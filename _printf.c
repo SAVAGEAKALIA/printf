@@ -27,11 +27,10 @@ int _printf(const char *format, ...)
 		else /* if format is a % sign*/
 		{
 			i++; /*skips % sign to the next character*/
-			
 			if (format[i] == '\0')/*checks if format[i] is null*/
 				break;
 
-			while (specifier[index].letter != '\0')
+			while (specifier[index].letter != 0)
 			{
 				if (format[i] == specifier[index].letter)
 				{

@@ -105,16 +105,23 @@ void print_integeri(va_list args)
 
 void print_string(va_list args)
 {
-	char *s;
-
-	s = va_arg(args, char *);
-
-	if (*s != '\0')
-	{
-		while (*s)
-		{
-		putchar(*s);
-		s++;
-		}
-	}
+    char *s = va_arg(args, char*);
+    
+    if (s == NULL)
+    {
+        const char *null_str = "(null)";
+        while (*null_str)
+        {
+            putchar(*null_str);
+            null_str++;
+        }
+    }
+    else
+    {
+        while (*s)
+        {
+            putchar(*s);
+            s++;
+        }
+    }
 }

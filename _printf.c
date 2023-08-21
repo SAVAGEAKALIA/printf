@@ -6,7 +6,6 @@
  */
 int _printf(const char *format, ...)
 {	int i, count = 0, index = 0;
-	/*Betty error - more than 40 lines of code.Created file with funct*/
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
 
@@ -21,11 +20,9 @@ int _printf(const char *format, ...)
 			putchar(format[i]);
 			count++;
 		}
-		
 		else /* if format is a % sign*/
 		{
 			i++; /*skips % sign to the next character*/
-			
 			if (format[i] == '\0')
 			{
 				va_end(args);
@@ -47,8 +44,7 @@ int _printf(const char *format, ...)
 				putchar(format[i]);
 				count += 2;
 			}
-		}
-	}
+		}}
 	va_end(args);
 	return (count);
 }

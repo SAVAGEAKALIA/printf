@@ -24,10 +24,7 @@ int _printf(const char *format, ...)
 		{
 			i++; /*skips % sign to the next character*/
 			if (format[i] == '\0')
-			{
-				va_end(args);
-				return (-1);
-			}
+			break;
 
 			index = 0;
 			while (specifier[index].letter != 0)

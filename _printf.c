@@ -1,52 +1,93 @@
 #include "main.h"
+
+void print_buffer(char buffer[], int *buff_ind);
 /**
- *_printf - printf function that prinst format specifiers
- *@format: format for different specifiers
- *Return: integer on success
+ * print_buffer - Prints the contents of the buffer if it is not empty
+ * @buffer: Array of characters.
+ * @buff_ind: Index at which to add the next character, representing the length
+ */
+
+void print_buffer(char buffer[], int *buff_ind)
+{
+	if (*buff_ind > 0)
+		write(1, &buffer[0], *buff_ind);
+
+	*buff_ind = 0;
+}
+
+/**
+ * _printf - Custom printf function
+ * @format: The format string.
+ * Return: Number of characters printed.
  */
 int _printf(const char *format, ...)
-{	int i, count = 0, index = 0;
-	const specifier_info *specifier = get_specifier_array();
+{
+	int i, printed_chars = 0;
+	int buff_ind = 0;
 	va_list args;
+	char buffer[BUFF_SIZE];
 
-	if (format == NULL) /* Added a check- if format string is NULL return error*/
-	{
+	if (format == NULL)
 		return (-1);
-	}
+
 	va_start(args, format);
 
-	for (i = 0; format[i] != '\0'; i++)
+	for (i = 0; format && format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
 		{
-			putchar(format[i]);
-			count++;
+			buffer[buff_ind++] = format[i];
+			if (buff_ind == BUFF_SIZE)
+				print_buffer(buffer, &buff_ind);
+			printed_chars++;
 		}
-		else /* if format is a % sign*/
+		else
 		{
-			i++; /*skips % sign to the next character*/
-			if (format[i] == '\0')
+			print_buffer(buffer, &buff_ind);
+			if (format[i + 1] == '%') /* Case: '%%' prints a single '%'*/
 			{
-				va_end(args);
-				return (-1);
-			}
-
-			index = 0;
-			while (specifier[index].letter != 0)
-			{
-				if (format[i] == specifier[index].letter)
+				buffer[buff_ind++] = '%';
+				if (buff_ind == BUFF_SIZE)
 				{
-					specifier[index].function(args);
-					count++;
-					break;
-				}	index++;
+					print_buffer(buffer, &buff_ind);
+					printed_chars += buff_ind;
+				}
+				i++; /* Skip the next character since it's '%'*/
 			}
-			if (specifier[index].letter == 0)
-			{	putchar('%');
-				putchar(format[i]);
-				count += 2;
+			else if (format[i + 1] == 'c') /* Case: '%c' prints a character*/
+			{
+				int ch = va_arg(args, int);
+
+				buffer[buff_ind++] = ch;
+				if (buff_ind == BUFF_SIZE)
+				{
+					print_buffer(buffer, &buff_ind);
+					printed_chars += buff_ind;
+				}
+				i++; /* Skip the next character since it's 'c'*/
 			}
-		}}
+			else if (format[i + 1] == 's') /* Case: '%s' prints a string*/
+			{
+				char *str = va_arg(args, char *);
+
+				while (*str)
+				{
+					buffer[buff_ind++] = *str;
+					str++;
+					if (buff_ind == BUFF_SIZE)
+					{
+						print_buffer(buffer, &buff_ind);
+						printed_chars += buff_ind;
+					}
+				}
+				i++; /*Skip the next character since it's 's'*/
+			}
+		}
+	}
+
+	print_buffer(buffer, &buff_ind);
+
 	va_end(args);
-	return (count);
+
+	return (printed_chars);
 }

@@ -1,21 +1,21 @@
 #include "main.h"
 
 /**
- *print_charcaters - Print format specifier %c
- *
- *
+ *print_character - Print format specifier %c
+ *@args: arguments passed to function
  */
 
 void print_character(va_list args)
 {
-	char c = va_arg(args, int);
+	char c;
+
+	c = va_arg(args, int);
 	putchar(c);
 }
 
 /**
  *print_percent - print %
- *@va_list: variadic funct
- *
+ *@args: arguments passed to function
  */
 
 void print_percent(va_list args)
@@ -27,8 +27,7 @@ void print_percent(va_list args)
 
 /**
  *print_integer - print integer where seen
- *@va_list: variadic funct
- *
+ *@args: arguments passed to function
  */
 
 void print_integer(va_list args)
@@ -95,15 +94,15 @@ void print_unsigned_integer(va_list args)
 /**
  *print_string - prints a string from va_list
  *@args: va_list containing the string to print
- *
  */
 
 void print_string(va_list args)
 {
 	char *s;
+
 	s = va_arg(args, char *);
 
-	while (*s !='\0')
+	while (*s != '\0')
 	{
 		putchar(*s);
 		s++;

@@ -10,7 +10,9 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	if (format == NULL) /* Added a check- if format string is NULL return error*/
-	return (-1);
+	{
+		return (-1);
+	}
 	va_start(args, format);
 
 	for (i = 0; format[i] != '\0'; i++)

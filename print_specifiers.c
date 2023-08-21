@@ -69,7 +69,7 @@ void print_integer(va_list args)
 void print_integeri(va_list args)
 {
 	int i = va_arg(args, int);
-	
+
 	char buffer[20];
 	int index = 0;
 
@@ -84,7 +84,7 @@ void print_integeri(va_list args)
 		putchar('-');
 		i = -i;
 	}
-	
+
 	while (i > 0)
 	{
 		buffer[index++] = '0' + (i % 10);
@@ -106,6 +106,7 @@ void print_integeri(va_list args)
 void print_string(va_list args)
 {
 	char *s;
+
 	s = va_arg(args, char *);
 
 	while (*s != '\0')

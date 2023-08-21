@@ -29,7 +29,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 			{
 				va_end(args);
-				return (-i);
+				return (-1);
 			}
 
 			index = 0;

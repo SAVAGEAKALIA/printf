@@ -9,8 +9,6 @@ int _printf(const char *format, ...)
 	int i, count = 0, index = 0, found = 0;
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
-	if (format == NULL)
-    return (6);
 
 	va_start(args, format);
 
@@ -26,23 +24,17 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0')
 				return (-1);
 			if (format[i] == ' ')
-				return 0;
-			if (format[i] == '%')
-			{
-				putchar('%');
-				count++;
-				continue;
-			}
+				return (0);
 
 				for (index = 0; specifier[index].letter != 0; index++)
-                {
-                    if (format[i] == specifier[index].letter)
-                    {
-                        count += specifier[index].function(args);
-                        found = 1;
-                        break;
-                    }
-                }
+				{
+					if (format[i] == specifier[index].letter)
+					{
+						count += specifier[index].function(args);
+						found = 1;
+						break;
+					}
+				}
 			if (!found)
 			{	putchar('%');
 				putchar(format[i]);

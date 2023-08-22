@@ -3,6 +3,7 @@
 /**
  *print_character - Print format specifier %c
  *@args: arguments passed to function
+ *Return: count
  */
 
 
@@ -16,6 +17,7 @@ int print_character(va_list args)
 /**
  *print_percent - print %
  *@args: arguments passed to function
+ *Return: count
  */
 
 int print_percent(va_list args)
@@ -30,42 +32,44 @@ int print_percent(va_list args)
 /**
  *print_integer - print integer where seen
  *@args: arguments passed to function
+ *Return: count
  */
 
 int print_integer(va_list args)
 {
-    int num = va_arg(args, int);
-    int i, count = 0;
-    char buffer[32];
-    int len = snprintf(buffer, sizeof(buffer), "%d", num);
+	int num = va_arg(args, int);
+	int i, count = 0;
+	char buffer[32];
+	int len = snprintf(buffer, sizeof(buffer), "%d", num);
 
-    for (i = 0; i < len; i++)
-    {
-        putchar(buffer[i]);
-        count++;
-    }
-    
-    return count;
+	for (i = 0; i < len; i++)
+	{
+		putchar(buffer[i]);
+		count++;
+	}
+
+	return (count);
 }
 
 /**
  * print_integeri - print unsigned integer from va_list
  * @args: va_list containing the unsigned integer to print
+ * Return: count
  */
 int print_integeri(va_list args)
 {
-    int num = va_arg(args, int);
-    int i, count = 0;
-    char buffer[32];
-    int len = snprintf(buffer, sizeof(buffer), "%d", num);
+	int num = va_arg(args, int);
+	int i, count = 0;
+	char buffer[32];
+	int len = snprintf(buffer, sizeof(buffer), "%d", num);
 
-    for (i = 0; i < len; i++)
-    {
-        putchar(buffer[i]);
-        count++;
-    }
-    
-    return count;
+	for (i = 0; i < len; i++)
+	{
+		putchar(buffer[i]);
+		count++;
+	}
+
+	return (count);
 }
 
 
@@ -73,35 +77,37 @@ int print_integeri(va_list args)
 /**
  *print_string - prints a string from va_list
  *@args: va_list containing the string to print
+ *Return: count
  */
 
 int print_string(va_list args)
 {
-    char *str = va_arg(args, char *);
-    size_t len, i;
-    int count = 0;
+	char *str = va_arg(args, char *);
+	size_t len, i;
+	int count = 0;
 
-    if (str == NULL)
-    {
-        const char null_str[] = "(null)";
-        len = strlen(null_str);
+	if (str == NULL)
+	{
+		const char null_str[] = "(null)";
 
-        for (i = 0; i < len; i++)
-        {
-            putchar(null_str[i]);
-            count++;
-        }
-    }
-    else
-    {
-        len = strlen(str);
+		len = strlen(null_str);
 
-        for (i = 0; i < len; i++)
-        {
-            putchar(str[i]);
-            count++;
-        }
-    }
+		for (i = 0; i < len; i++)
+		{
+			putchar(null_str[i]);
+			count++;
+		}
+	}
+	else
+	{
+		len = strlen(str);
 
-    return count;
+		for (i = 0; i < len; i++)
+		{
+			putchar(str[i]);
+			count++;
+		}
+	}
+
+	return (count);
 }

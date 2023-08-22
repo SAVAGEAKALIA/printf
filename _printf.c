@@ -10,10 +10,7 @@ int _printf(const char *format, ...)
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
 	if (format == NULL)
-    {
-        fputs("(null)", stdout);
-        return 6;
-    }
+    return (-1);
 
 	va_start(args, format);
 
@@ -27,14 +24,7 @@ int _printf(const char *format, ...)
 		else /* if format is a % sign*/
 		{i++; /*skips % sign to the next character*/
 			if (format[i] == '\0')
-			{va_end(args);
-				return (-1);
-			}
-			if (format[i] == '%')
-            {
-                putchar('%');
-                count++;
-            }
+			break;
 
 			else
 				{

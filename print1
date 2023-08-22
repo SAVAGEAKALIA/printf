@@ -1,51 +1,52 @@
 #include "main.h"
 /**
-  *_printf - printf function that prinst format specifiers
-  *@format: format for different specifiers
-  *Return: integer on success
-  */
+ *_printf - printf function that prinst format specifiers
+ *@format: format for different specifiers
+ *Return: integer on success
+ */
 int _printf(const char *format, ...)
-{	int count = 0;
+{	int i, count = 0, index = 0;
+	const specifier_info *specifier = get_specifier_array();
 	va_list args;
 
-		if (format == NULL)
-			return (-1);
+	if (format == NULL) {
+        fputs("(null)", stdout);
+        return 6;
+    }
 
 	va_start(args, format);
 
-	while (*format)
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (*format != '%')
+		if (format[i] != '%')
 		{
-			putchar(*format);
+			putchar(format[i]);
 			count++;
 		}
-		else
-	{
-			format++;
-		if (*format == '\0')
+		else /* if format is a % sign*/
 		{
-			va_end(args);
-			return (-1);
-		}
+			i++; /*skips % sign to the next character*/
+			if (format[i] == '\0') {
+                va_end(args);
+                return (-i);
+            }
 
-		if (*format == 'c')
+			index = 0;
+			while (specifier[index].letter != 0)
 			{
-			print_character(args);
+				if (format[i] == specifier[index].letter)
+				{
+					specifier[index].function(args);
 					count++;
+					break;
+				}	index++;
 			}
-		else if (*format == 's')
-			{
-			print_string(args);
-			count++;
+			if (specifier[index].letter == 0)
+			{	putchar('%');
+				putchar(format[i]);
+				count += 2;
 			}
-		else if (*format == '%')
-			{
-			putchar(*format);
-			count++;
-			}}
-		format++;
-	}
+		}}
 	va_end(args);
 	return (count);
 }

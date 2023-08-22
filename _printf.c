@@ -5,14 +5,12 @@
  *Return: integer on success
  */
 int _printf(const char *format, ...)
-{	int i, count = 0, index = 0;
+{
+	int i, count = 0, index = 0, found = 0;
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
-
-	if (format == NULL) {
-        fputs("(null)", stdout);
-        return 6;
-    }
+	if (format == NULL)
+    return (-1);
 
 	va_start(args, format);
 
@@ -24,30 +22,27 @@ int _printf(const char *format, ...)
 			count++;
 		}
 		else /* if format is a % sign*/
-		{
-			i++; /*skips % sign to the next character*/
-			if (format[i] == '\0') {
-                va_end(args);
-                return (-i);
-            }
+		{i++; /*skips % sign to the next character*/
+			if (format[i] == '\0')
+			break;
 
-			index = 0;
-			while (specifier[index].letter != 0)
-			{
-				if (format[i] == specifier[index].letter)
+			else
 				{
-					specifier[index].function(args);
-					count++;
-					break;
-				}	index++;
-			}
-			if (specifier[index].letter == 0)
+				for (index = 0; specifier[index].letter != 0; index++)
+                {
+                    if (format[i] == specifier[index].letter)
+                    {
+                        specifier[index].function(args);
+                        count++;
+                        found = 1;
+                        break;
+                    }
+                }
+			if (!found)
 			{	putchar('%');
 				putchar(format[i]);
 				count += 2;
-			}
-		}
-	}
+			}}}}
 	va_end(args);
 	return (count);
 }

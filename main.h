@@ -32,5 +32,6 @@ int print_octal(va_list args);
 int print_hex_lower(va_list args);
 int print_hex_upper(va_list args);
 int print_pointer(va_list args);
+int print_hex_binary(va_list args);
 const specifier_info *get_specifier_array(void);
 #endif

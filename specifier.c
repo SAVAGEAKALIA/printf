@@ -19,6 +19,7 @@ const specifier_info *get_specifier_array(void)
 		{'X', print_hex_upper},
 		{'x', print_hex_lower},
 		{'%', print_percent},
+		{'b', print_hex_binary},
 		{0, NULL}
 	};
 		return (specifiers);

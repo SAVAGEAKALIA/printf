@@ -4,76 +4,95 @@
   *@args: unsigned integer
   */
 
-void print_unsigned_integer(va_list args)
+int print_unsigned_integer(va_list args)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	int i, len;
-	char buffer[32];
+   unsigned  int num = va_arg(args, int);
+    int i, count = 0;
+    char buffer[32];
+    int len = snprintf(buffer, sizeof(buffer), "%d", num);
 
-	len = snprintf(buffer, sizeof(buffer), "%u", num);
-	for (i = 0; i < len; i++)
-		putchar(buffer[i]);
-
+    for (i = 0; i < len; i++)
+    {
+        putchar(buffer[i]);
+        count++;
+    }
+    
+    return count;
 }
+
 /**
   *print_octal - print Octal
   *@args: octal
   */
 
-void print_octal(va_list args)
+int print_octal(va_list args)
 {
-	int num = va_arg(args, int);
-	int i, len;
-	char buffer[32];
+    int num = va_arg(args, int);
+    int i, len;
+    char buffer[32];
+    int count;
 
-	len = snprintf(buffer, sizeof(buffer), "%o", num);
-	for (i = 0; i < len; i++)
-		putchar(buffer[i]);
-
+    len = snprintf(buffer, sizeof(buffer), "%o", num);
+    count = 0;
+    
+    for (i = 0; i < len; i++)
+    {
+        putchar(buffer[i]);
+        count++;
+    }
+    
+    return count;
 }
+
+
 /**
   *print_hex_lower - print hex lower
   *@args: hex lower
   */
 
-void print_hex_lower(va_list args)
+int print_hex_lower(va_list args)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	int i, len;
-	char buffer[32];
-
-	len = snprintf(buffer, sizeof(buffer), "%x", num);
-	for (i = 0; i < len; i++)
-		putchar(tolower(buffer[i]));
+    int num = va_arg(args, int);
+    int i;
+    int count = 0;
+    char buffer[32];
+    int len = snprintf(buffer, sizeof(buffer), "%x", num);
+    for (i = 0; i < len; i++)
+        count += putchar(tolower(buffer[i]));
+    return count;
 }
 
 /**
   *print_hex_upper -print hex upper
   *@args: hex upper
   */
-void print_hex_upper(va_list args)
+int print_hex_upper(va_list args)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	int i, len;
-	char buffer[32];
-
-	len = snprintf(buffer, sizeof(buffer), "%X", num);
-	for (i = 0; i < len; i++)
-		putchar(buffer[i]);
+    unsigned int num = va_arg(args, unsigned int);
+    char buffer[32];
+    int len = snprintf(buffer, sizeof(buffer), "%X", num);
+    
+    int i, count = 0;
+    for (i = 0; i < len; i++) {
+        putchar(buffer[i]);
+        count++;
+    }
+    return count;
 }
 /**
   *print_pointer - print pointer
   *@args: pointer
   */
-void print_pointer(va_list args)
+int print_pointer(va_list args)
 {
-	void *ptr = va_arg(args, void *);
-	int i;
-
-	char buffer[20];
-
-	snprintf(buffer, sizeof(buffer), "%p", ptr);
-
-	for (i = 0; buffer[i] != '\0'; i++)
-	putchar(buffer[i]);
+    void *ptr = va_arg(args, void *);
+    int count = 0;
+    int i;
+    char buffer[20];
+    int len = snprintf(buffer, sizeof(buffer), "%p", ptr);
+    for (i = 0; i < len; i++) {
+        putchar(buffer[i]);
+        count++;
+    }
+    return count;
 }

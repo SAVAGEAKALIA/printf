@@ -6,18 +6,18 @@
 
 int print_unsigned_integer(va_list args)
 {
-   unsigned  int num = va_arg(args, int);
-    int i, count = 0;
-    char buffer[32];
-    int len = snprintf(buffer, sizeof(buffer), "%d", num);
+	unsigned  int num = va_arg(args, int);
+	int i, count = 0;
+	char buffer[32];
+	int len = snprintf(buffer, sizeof(buffer), "%d", num);
 
-    for (i = 0; i < len; i++)
-    {
-        putchar(buffer[i]);
-        count++;
-    }
+	for (i = 0; i < len; i++)
+	{
+		putchar(buffer[i]);
+		count++;
+	}
     
-    return count;
+	return (count);
 }
 
 /**

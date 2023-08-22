@@ -9,11 +9,11 @@ int _printf(const char *format, ...)
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
 
-	if (format == NULL) {
-        fputs("(null)", stdout);
-        return 6;
-    }
-
+	if (format == NULL)
+	{
+		fputs("(null)", stdout);
+		return (6);
+	}
 	va_start(args, format);
 
 	for (i = 0; format[i] != '\0'; i++)
@@ -24,19 +24,16 @@ int _printf(const char *format, ...)
 			count++;
 		}
 		else /* if format is a % sign*/
-		{
-			i++; /*skips % sign to the next character*/
-			if (format[i] == '\0') {
-                va_end(args);
-                return (-i);
-            }
-
+		{i++; /*skips % sign to the next character*/
+			if (format[i] == '\0')
+			{va_end(args);
+				return (-i);
+			}
 			index = 0;
 			while (specifier[index].letter != 0)
 			{
 				if (format[i] == specifier[index].letter)
-				{
-					specifier[index].function(args);
+				{specifier[index].function(args);
 					count++;
 					break;
 				}	index++;
@@ -45,9 +42,7 @@ int _printf(const char *format, ...)
 			{	putchar('%');
 				putchar(format[i]);
 				count += 2;
-			}
-		}
-	}
+			}}}
 	va_end(args);
 	return (count);
 }

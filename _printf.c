@@ -23,8 +23,11 @@ int _printf(const char *format, ...)
 		{i++; /*skips % sign to the next character*/
 			if (format[i] == '\0')
 				return (-1);
+
 			if (format[i] == ' ')
+			{
 				return (0);
+			}
 
 				for (index = 0; specifier[index].letter != 0; index++)
 				{

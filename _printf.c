@@ -9,11 +9,6 @@ int _printf(const char *format, ...)
 	const specifier_info *specifier = get_specifier_array();
 	va_list args;
 
-	if (format == NULL)
-	{
-		fputs("(null)", stdout);
-		return (6);
-	}
 	va_start(args, format);
 
 	for (i = 0; format[i] != '\0'; i++)

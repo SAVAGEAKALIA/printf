@@ -18,31 +18,26 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			putchar(format[i]);
+			write(1, &format[i], 1);
 			count++;
 		}
 		else /* if format is a % sign*/
 		{i++; /*skips % sign to the next character*/
-			if (format[i] == '\0')
-				return (-1);
 
-			if (format[i] == ' ')
-			{
-				return (0);
-			}
-
-				for (index = 0; specifier[index].letter != 0; index++)
+			index = 0;
+			while (specifier[index].letter != 0)
 				{
 					if (format[i] == specifier[index].letter)
 					{
-						count += specifier[index].function(args);
-						found = 1;
+						specifier[index].function(args);
+						count++;
 						break;
+						index++;
 					}
 				}
-			if (!found)
-			{	putchar('%');
-				putchar(format[i]);
+			if (specifier[index].letter == 0)
+			{	write(1, '%', 1);
+				write(1, &format[i], 1);
 				count += 2;
 			}}}
 	va_end(args);

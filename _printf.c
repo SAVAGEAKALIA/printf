@@ -13,7 +13,6 @@ int _printf(const char *format, ...)
 	if (format == NULL)	/*added a check - if format string if NULL return*/
 		return (-1);
 	va_start(args, format);
-
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] != '%')
@@ -30,7 +29,7 @@ int _printf(const char *format, ...)
 			{
 				return (0);
 			}
-
+				found = 0;
 				for (index = 0; specifier[index].letter != 0; index++)
 				{
 					if (format[i] == specifier[index].letter)
@@ -38,8 +37,7 @@ int _printf(const char *format, ...)
 						count += specifier[index].function(args);
 						found = 1;
 						break;
-					}
-				}
+					}}
 			if (!found)
 			{	putchar('%');
 				putchar(format[i]);

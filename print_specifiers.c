@@ -11,7 +11,7 @@ int print_character(va_list args)
 {
 	char c = (char)va_arg(args, int);
 
-	putchar(c);
+	write(1, &c, 1);
 	return (1);
 }
 /**
@@ -22,7 +22,7 @@ int print_character(va_list args)
 
 int print_percent(va_list args)
 {
-	putchar('%');
+	write(1, &percent, 1);
 	(void)args;
 
 	return (1);
@@ -44,7 +44,7 @@ int print_integer(va_list args)
 
 	for (i = 0; i < len; i++)
 	{
-		putchar(buffer[i]);
+		write(1, buffer, len);
 		count++;
 	}
 
@@ -65,7 +65,7 @@ int print_integeri(va_list args)
 
 	for (i = 0; i < len; i++)
 	{
-		putchar(buffer[i]);
+		write(1, buffer, len);
 		count++;
 	}
 
@@ -94,7 +94,7 @@ int print_string(va_list args)
 
 		for (i = 0; i < len; i++)
 		{
-			putchar(null_str[i]);
+			write(1, null_str, len);
 			count++;
 		}
 	}
@@ -104,7 +104,7 @@ int print_string(va_list args)
 
 		for (i = 0; i < len; i++)
 		{
-			putchar(str[i]);
+			write(1, str, len);
 			count++;
 		}
 	}

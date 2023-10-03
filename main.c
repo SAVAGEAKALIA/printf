@@ -19,6 +19,7 @@ int n1;
 int n2;
 int num1;
 int num2;
+
 n1 = 0;
 n2 = 0;
 num1 = 0;
